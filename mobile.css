@@ -219,9 +219,199 @@
         flex-basis: 50%;
         margin-bottom: 30px;
     }
+
+    .footer__link {
+        margin-left: 35px;
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width: 768px) {
+    .header__menu:hover,
+    .header__menu:active {
+        border-left-color: #e1e2e3;
+        border-right-color: #e1e2e3;
+    } 
+
+    .header__menu.clicked {
+        border-left-color: #ff4148;
+        border-right-color: #ff793a;
+    }
+
+    .header__menu:hover::before {
+        height: 0;
+        opacity: 0;
+    }
+
+    .header__menu.clicked::before {
+        height: 100%;
+        opacity: 1;
+    }
+
+    .header__menu:hover svg {
+        z-index: 1;
+        fill: black;
+    }
+
+    .header__menu.clicked svg {
+        z-index: 4;
+        fill: white;
+    }
+
+    .menu_dropdown__item:hover {
+        color: #333;
+    }
+
+    .menu_dropdown__item:hover::before {
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        z-index: 0;
+    }
+
+    .header__item:hover, 
+    .header__item:active {
+        color: black;
+    }
+
+    .header__search_block:hover .header__search_label {
+        color: black;
+    }
+
+    .genres_block__item:hover::before {
+        transform: translateY(0);
+    }
+
+    .currency:hover::before {
+        height: 0;
+        opacity: 0;
+        z-index: inherit;
+    }
+
+    .currency.clicked:before {
+        height: 100%;
+        opacity: 1;
+        z-index: 5;
+    }
+
+    /* .currency:hover::after {
+        opacity: 1;
+        z-index: inherit;
+    }
+
+    .currency.clicked::after {
+        opacity: 1;
+        z-index: 5;
+    } */
+
+    .currency:hover .currency__current {
+        fill: initial;
+        z-index: 1;
+    }
+
+    .currency.clicked .currency__current{
+        fill: white;
+        z-index: 5;
+    }
+
+    .currency__item:hover {
+        background-color: transparent;
+    }
+
+    .path__node:hover {
+        color: white;
+    }
+
+    .poster:hover::before {
+        transform: none;
+    }
+
+    .poster:hover .poster__image {
+        fill: #ff793a;
+    }
+
+    .poster:hover .poster__text {
+        color: #ff793a;
+        fill: #ff793a;
+    }
+
+    .similar__game:hover {
+        color: #0d0d0d;
+    }
+
+    .purchase__btn:hover .purchase__btn-text {
+        z-index: inherit;
+    }
+
+    .purchase__btn:hover::before {
+        height: 0;
+        opacity: 0;
+    }
+
+    .purchase__link:hover::before {
+        top: 100%;
+        height: 0;
+        opacity: 0;
+    }
+
+    .purchase__link:hover .puchase__link-img {
+        z-index: inherit;
+    }
+
+    .purchase__link:hover .puchase__link-svg {
+        z-index: inherit;
+        fill: black;
+    }
+
+    .purchase__link:hover .purchase__link-text {
+        z-index: inherit;
+        color: black;
+    }
+
+    .open_btn:hover {
+        color: black;
+    }
+
+    .tab_pages__title:hover {
+        color: gray;
+    }
+
+    .tab_pages__item:hover {
+        box-shadow: none;
+        z-index: inherit;
+    }
+
+    .tab_pages__item:hover .tab_pages__item_discount {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .comments__sign_in:hover {
+        color: black;
+    }
+
+    .comments__input_submit:hover .comments__submit-text {
+        z-index: inherit;
+    }
+
+    .comments__input_submit:hover::after {
+        height: 0;
+        opacity: 0;
+    }
+
+    .comment__answer:hover {
+        color: #0094e9;
+    }
+
+    .comment__like:hover {
+        opacity: 0.6;
+    }
+
+    .footer__link:hover {
+        color: gray;
+    }
+
     .header__container {
         height: 51px;
     }
@@ -299,8 +489,8 @@
 
     .footer__container {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     .site_features {
@@ -311,6 +501,31 @@
         flex-basis: 100%;
         margin-bottom: 30px;
         justify-content: flex-start;
+    }
+
+    .footer__bottom {
+        flex-direction: column-reverse;
+        padding: 0;
+    }
+
+    .footer__links {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 30px 0;
+        border-bottom: rgba(128, 128, 128, 0.288) 1px solid;
+        margin-bottom: 30px;
+    }
+
+    .footer__link {
+        margin: 0;
+        flex-basis: 50%;
+        text-align: center;
+        padding: 10px 10px;
+        box-sizing: border-box;
+    }
+
+    .footer__info {
+        text-align: center;
     }
 }
 
