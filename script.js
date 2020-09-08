@@ -70,29 +70,36 @@ similar__open_btn.onclick = function() {
     }
 }
 
-let description__open_btn = document.getElementById("description__open_btn");
 let description = document.getElementById("description");
+let descriptionOpenBtn = document.getElementById("description__open_btn");
+let descriptionHiddenContent = document.getElementById("description__hidden_content");
 
-description__open_btn.onclick = function() {
-    if(!description.classList.contains("opened")) {
+descriptionOpenBtn.onclick = function() {
+    console.log("click")
+    if(descriptionHiddenContent.classList.contains("hidden")) {
         description.classList.add("opened");
-        description__open_btn.textContent = "Свернуть";
+        descriptionHiddenContent.classList.remove("hidden");
+        descriptionOpenBtn.textContent = "Свернуть";
     } else {
         description.classList.remove("opened");
-        description__open_btn.textContent = "Читать дальше";
+        descriptionHiddenContent.classList.add("hidden");
+        descriptionOpenBtn.textContent = "Читать дальше";
     }
 }
 
-let requirements__open_btn = document.getElementById("requirements__open_btn");
 let requirements = document.getElementById("requirements");
+let requirementsOpenBtn = document.getElementById("requirements__open_btn");
+let requirementsHiddenContent = document.getElementById("requirements__hidden_content");
 
-requirements__open_btn.onclick = function() {
-    if(!requirements.classList.contains("opened")) {
+requirementsOpenBtn.onclick = function() {
+    if(requirementsHiddenContent.classList.contains("hidden")) {
         requirements.classList.add("opened");
-        requirements__open_btn.textContent = "Скрыть рекомендуемые";
+        requirementsHiddenContent.classList.remove("hidden");
+        requirementsOpenBtn.textContent = "Скрыть рекомендуемые";
     } else {
         requirements.classList.remove("opened");
-        requirements__open_btn.textContent = "Показать рекомендуемые";
+        requirementsHiddenContent.classList.add("hidden");
+        requirementsOpenBtn.textContent = "Показать рекомендуемые";
     }
 }
 
