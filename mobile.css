@@ -1,0 +1,326 @@
+@media screen and (max-width: 1240px) {
+    .game__key_info {
+        display: none;
+    }
+
+    .game__key_info-mobile {
+        display: block;
+    }
+
+    .purchase {
+        width: 100%;
+        
+    }
+
+    .purchase__links {
+        justify-content: space-between;
+    }
+
+    .tab_pages__item {
+        flex-wrap: wrap;
+        padding: 12px 20px;
+    }
+
+    .tab_pages__item_title {
+        flex: 0 100%;
+    }
+
+    .tab_pages__item_discount,
+    .tab_pages__item_price-none {
+        margin-left: 0;
+    }
+
+    .requirements .info__row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width: 1132px) {
+    .site_feature {
+        font-size: 14px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .header__item:nth-child(n + 2) {
+        display: none;
+    }
+
+    .header__search_panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 76px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .header__search_input {
+        width: calc(100% - 200px);
+    }
+
+    .header__search_block.clicked .header__search_panel {
+        opacity: 1;
+        width: 100%;
+        z-index: 4;
+        visibility: visible;
+        transform: none;
+    }
+
+    .header__search_container {
+        transform: translateX(0);
+    }
+
+    .header__search_close {
+        position: fixed;
+        height: 76px;
+    }
+
+    .header__search_block.clicked .header__search_icon {
+        position: fixed;
+        right: 150px;
+        transform: translateX(50px);
+    }
+
+    .header__right {
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .game__key_info-mobile,
+    .game__info-full,
+    .similar {
+        display: none;
+    }
+
+    .game__main {
+        max-width: 780px;
+        padding: 0 10px;
+    }
+
+    .game__panels {
+        flex-direction: column;
+    }
+
+    .game__left {
+        display: flex;
+        justify-content: center;
+    }
+
+    .game__right {
+        margin: 0;
+    }
+
+    .game__purchase_info {
+        flex-direction: column-reverse;
+        margin-top: 20px;
+    }
+
+    .game__key_info-full {
+        display: flex;
+        background-color: #171717;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+    .game__key_info-full .info {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .game__key_info-full .info__row {
+        flex: 0 50%;
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    .purchase {
+        height: 150px;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+    
+    .purchase__price-new {
+        color: black;
+    }
+
+    .purchase__btn,
+    .purchase__links {
+        width: 400px;
+    }
+
+    .purchase__link:hover::before {
+        top: 100%;
+        height: 0;
+        opacity: 0;
+    }
+
+    .purchase__link:hover .puchase__link-img img {
+        z-index: 1;
+        transform: none;
+    }
+
+    .purchase__link:hover .puchase__link-svg {
+        z-index: 1;
+        fill: black;
+    }
+
+    .puchase__link-img::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("./images/steam-black.png") no-repeat;
+    }
+
+    .puchase__link-svg {
+        fill: black;
+    }
+
+    .purchase__link-text {
+        color: black;
+    }
+
+    .game__info-mobile {
+        display: block;
+    }
+
+    .game__info-mobile .info__row {
+        line-height: 1.6;
+    }
+
+    .game__info-mobile .info__head {
+        flex: 0 35%;
+        text-align: left;
+    }
+
+    .game__info-mobile .info__data {
+        flex: 0 65%;
+    }
+
+    .description {
+        margin-top: 20px;
+    }
+
+    .requirements .info__row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .site_feature {
+        flex-basis: 50%;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header__container {
+        height: 51px;
+    }
+
+    .header__menu {
+        flex: 0 0 55px;
+        height: 51px;
+        width: 37px;
+    }
+
+    .menu_dropdown {
+        width: 100vw;
+    }
+
+    .menu_dropdown__item {
+        text-align: center;
+    }
+
+    .header__item.dropdown_btn,
+    .header__search_label {
+        display: none;
+    }
+
+    .header__search_panel,
+    .header__search_close {
+        height: 51px;
+    }
+
+    .header__search_block {
+        width: 100%;
+        padding: 0;
+        justify-content: flex-end;
+    }
+    
+    .header__search_icon {
+        stroke: black;
+        padding: 0 10px;
+    }
+    
+    .header__right {
+        flex: 0 0 110px;
+    }
+
+    .game__background::before {
+        background: radial-gradient(circle,#0f4260,#17181b);
+    }
+
+    .purchase {
+        height: auto;
+        flex-wrap: nowrap;
+        align-content: flex-start;
+    }
+
+    .game__key_info-full .info {
+        flex-direction: column;
+    }
+
+    .game__key_info-full .info__row {
+        flex: 1 1;
+    }
+
+    .purchase__btn,
+    .purchase__links {
+        width: auto;
+    }
+
+    .game__info-mobile .info__head {
+        text-align: right;
+    }
+
+    .requirements .info__row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .site_features {
+        max-width: 420px;
+    }
+    
+    .site_feature {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .purchase__links {
+        flex-direction: column;
+    }
+
+    .purchase__link:nth-child(n + 2) {
+        margin-top: 5px;
+        margin-left: 0;
+    }
+}
