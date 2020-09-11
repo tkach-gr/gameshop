@@ -1,5 +1,112 @@
-var body = document.getElementsByTagName("body")[0];
+let body = document.getElementsByTagName("body")[0];
 
+let galleryImages = [
+    "./images/gallery/dark-souls-3_1.jpg",
+    "./images/gallery/dark-souls-3_2.jpg",
+    "./images/gallery/dark-souls-3_3.jpg",
+    "./images/gallery/dark-souls-3_4.jpg",
+    "./images/gallery/dark-souls-3_5.jpg",
+    "./images/gallery/dark-souls-3_6.jpg",
+    "./images/gallery/dark-souls-3_7.jpg",
+    "./images/gallery/dark-souls-3_8.jpg",
+    "./images/gallery/dark-souls-3_9.jpg",
+    "./images/gallery/dark-souls-3_10.jpg",
+];
+
+class Gallery {
+    block;
+    screen;
+    closeBtn;
+    imagesList;
+    currentIndex;
+
+    constructor(obj, images) {
+        this.block = obj;
+        let container = this.findComponentByClass(this.block, "gallery__content");
+        this.closeBtn = this.findComponentByClass(this.block, "gallery__close");
+        this.screen = this.findComponentByClass(container, "gallery__screen");
+        let leftArrow = this.findComponentByClass(this.screen, "gallery__left_arrow");
+        let rightArrow = this.findComponentByClass(this.screen, "gallery__right_arrow");
+        let list = this.findComponentByClass(container, "gallery__list");
+        this.imagesList = this.findComponentByClass(list, "gallery__list_container");
+
+        this.initImagesList(images);
+        this.swipeImage(0);
+
+        let gallery = this;
+        leftArrow.onclick = function() { gallery.swipeImage(gallery.currentIndex - 1); };
+        rightArrow.onclick = function() { gallery.swipeImage(gallery.currentIndex + 1); };
+        this.closeBtn.onclick = function() { gallery.close(); };
+
+        return this;
+    }
+    
+    initImagesList(images) {
+        let list = this.imagesList.parentElement;
+        list.style.height = list.clientWidth / 100 * 9.5625 + "px";
+
+        let imagesItems = this.imagesList.children;
+        for(let i = 0; i < imagesItems.length; i++) {
+            let gallery = this;
+            imagesItems[i].onclick = function() { gallery.swipeImage(i); }
+
+            let style = imagesItems[i].style;
+            style.backgroundImage = "url(\"" + images[i] + "\")";
+            style.flexBasis = (this.screen.clientWidth / 100 * 17) + "px";
+        }
+    }
+
+    swipeImage(index) {
+        let imagesItems = this.imagesList.children;
+        let length = imagesItems.length;
+        index = (index + length) % length;
+
+        if (this.currentIndex != undefined) {
+            imagesItems[this.currentIndex].classList.remove("gallery__item-selected");
+        }
+
+        this.screen.style.backgroundImage = imagesItems[index].style.backgroundImage;
+        imagesItems[index].classList.add("gallery__item-selected");
+
+        let itemWidth = imagesItems[0].clientWidth;
+        let marginSize = imagesItems[1].offsetLeft - itemWidth;
+
+        let transformValue  = (itemWidth + marginSize) * -index;
+        if (transformValue <= ((itemWidth + marginSize) * -(length - 4))) {
+            transformValue = (itemWidth + marginSize) * -(length - 5);
+        } else if (transformValue > 0) {
+            transformValue = 0;
+        }
+
+        this.imagesList.style.transform = "translateX(" + transformValue + "px)";
+        this.currentIndex = index;
+    }
+
+    show() {
+        this.block.style.visibility = "visible";
+    }
+
+    close() {
+        this.block.style.visibility = "hidden";
+    }
+
+    findComponentByClass(obj, className) {
+        let children = obj.children;
+        
+        for(let i = 0; i < children.length; i++) {
+            let child = children[i];
+
+            if (child.classList.contains(className)) {
+                return child;
+            }
+        }
+    }
+}
+
+let poster = document.getElementById("poster");
+let galleryBlock = document.getElementsByClassName("gallery")[0];
+let gallery = new Gallery(galleryBlock, galleryImages);
+poster.onclick = function() { gallery.show() };
 
 let allTitles = document.getElementsByClassName("tab_pages__title");
 for(let i = 0; i < allTitles.length; i++) {
