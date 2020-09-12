@@ -241,6 +241,18 @@
         margin-bottom: 30px;
     }
 
+    .gallery__content {
+        width: 86%;
+    }
+
+    .gallery__left_arrow {
+        left: -50px;
+    }
+
+    .gallery__right_arrow {
+        right: -50px;
+    }
+
     .footer__link {
         margin-left: 35px;
         font-size: 15px;
@@ -500,6 +512,19 @@
     .requirements .info__row {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .gallery__content {
+        width: 100%;
+    }
+
+    .gallery__screen{
+        display: none;
+    }
+
+    .gallery__list {
+        margin-top: 0;
+        padding-left: 10%;
     }
 
     .footer__container {

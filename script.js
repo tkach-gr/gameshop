@@ -20,6 +20,8 @@ class Gallery {
     imagesList;
     currentIndex;
 
+    mobileSwipeTouch;
+
     constructor(obj, images) {
         this.block = obj;
         let container = this.findComponentByClass(this.block, "gallery__content");
@@ -32,8 +34,9 @@ class Gallery {
 
         this.initImagesList(images);
         this.swipeImage(0);
-
+        
         let gallery = this;
+        document.body.onresize = function() { gallery.resize(); };
         leftArrow.onclick = function() { gallery.swipeImage(gallery.currentIndex - 1); };
         rightArrow.onclick = function() { gallery.swipeImage(gallery.currentIndex + 1); };
         this.closeBtn.onclick = function() { gallery.close(); };
@@ -48,15 +51,40 @@ class Gallery {
         let imagesItems = this.imagesList.children;
         for(let i = 0; i < imagesItems.length; i++) {
             let gallery = this;
-            imagesItems[i].onclick = function() { gallery.swipeImage(i); }
+            imagesItems[i].onclick = function() { gallery.swipeImage(i); };
 
             let style = imagesItems[i].style;
             style.backgroundImage = "url(\"" + images[i] + "\")";
-            style.flexBasis = (this.screen.clientWidth / 100 * 17) + "px";
+            this.resize();
         }
     }
 
+    resize() {
+        if(document.body.clientWidth <= 768) {
+            let list = this.imagesList.parentElement;
+            list.style.height = document.body.clientWidth * 0.8 / 16 * 9 + "px";
+            this.enableSwipes();
+        } else {
+            let list = this.imagesList.parentElement;
+            list.style.height = list.clientWidth / 100 * 9.5625 + "px";
+            this.disableSwipes();
+        }
+
+        let imagesItems = this.imagesList.children;
+        for(let i = 0; i < imagesItems.length; i++) {
+            let style = imagesItems[i].style;
+            console.log(imagesItems[i].clientHeight);
+            style.flexBasis = (this.imagesList.clientHeight / 9 * 16) + "px";
+        }
+
+        this.swipeImage(this.currentIndex);
+    }
+
     swipeImage(index) {
+        if(index === undefined) {
+            index = 0;
+        }
+
         let imagesItems = this.imagesList.children;
         let length = imagesItems.length;
         index = (index + length) % length;
@@ -72,22 +100,25 @@ class Gallery {
         let marginSize = imagesItems[1].offsetLeft - itemWidth;
 
         let transformValue  = (itemWidth + marginSize) * -index;
-        if (transformValue <= ((itemWidth + marginSize) * -(length - 4))) {
-            transformValue = (itemWidth + marginSize) * -(length - 5);
-        } else if (transformValue > 0) {
-            transformValue = 0;
-        }
+
+        if(document.body.clientWidth > 768) {
+            if (transformValue <= ((itemWidth + marginSize) * -(length - 4))) {
+                transformValue = (itemWidth + marginSize) * -(length - 5);
+            } else if (transformValue > 0) {
+                transformValue = 0;
+            }
+        } 
 
         this.imagesList.style.transform = "translateX(" + transformValue + "px)";
         this.currentIndex = index;
     }
 
     show() {
-        this.block.style.visibility = "visible";
+        this.block.classList.remove("gallery-hidden");
     }
 
     close() {
-        this.block.style.visibility = "hidden";
+        this.block.classList.add("gallery-hidden");
     }
 
     findComponentByClass(obj, className) {
@@ -100,6 +131,41 @@ class Gallery {
                 return child;
             }
         }
+    }
+
+    enableSwipes() {
+        let imagesItems = this.imagesList.children;
+        for(let i = 0; i < imagesItems.length; i++) {
+            imagesItems[i].onclick = function() {};
+        }
+
+        let gallery = this;
+
+        this.imagesList.parentElement.onpointerdown = function() {
+            gallery.mobileSwipeTouch = event.clientX;
+            console.log("down - " + event.clientX);
+        };
+
+        this.imagesList.parentElement.onpointerup = function() {
+            console.log("up - " + gallery.mobileSwipeTouch + " + " + event.clientX);
+            if(gallery.mobileSwipeTouch - event.clientX >= 180 
+                && gallery.currentIndex + 1 < gallery.imagesList.children.length) {
+                
+                console.log(gallery.currentIndex + 1)
+                gallery.swipeImage(gallery.currentIndex + 1);
+
+            } else if(gallery.mobileSwipeTouch - event.clientX <= -180 
+                && gallery.currentIndex - 1 >= 0) {
+
+                console.log(gallery.currentIndex - 1);
+                gallery.swipeImage(gallery.currentIndex - 1);
+            }
+        };
+    }
+
+    disableSwipes() {
+        this.imagesList.parentElement.onpointerdown = function() {};
+        this.imagesList.parentElement.onpointerup = function() {};
     }
 }
 
